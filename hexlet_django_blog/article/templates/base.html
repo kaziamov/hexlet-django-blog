@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>
+      {% block title %}
+        Just nothing
+      {% endblock %}
+    </title>
+  </head>
+  <body>
+    <div id="sidebar">
+      {% block sidebar %}
+        <p>Just hothing</p>
+      {% endblock %}
+    </div>
+    <div id="content">
+      {% block content %}
+        <p>Just hothing</p>
+      {% endblock %}
+    </div>
+    <div>
+      {% block footer %}
+        <p>Just hothing</p>
+      {% endblock %}
+    </div>
+  </body>
+</html>
+
+{% comment %} <h1 class="">{{ title }}</h1>
+<h2 class="">{{ subtitle }}</h2>
+<p class="">{{ body }}</p> {% endcomment %}
