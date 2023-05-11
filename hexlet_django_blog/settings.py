@@ -1,15 +1,25 @@
 from pathlib import Path
+import dotenv
+import os
 
-from hexlet_django_blog.export_env import ALLOWED_HOST
+
+dotenv.load_dotenv()
+
+
+DB_HOST = os.getenv('DB_HOST')
+DB_PORT = os.getenv('DB_PORT')
+DB_NAME = os.getenv('DB_NAME')
+DB_USER = os.getenv('DB_USER')
+DB_PASS = os.getenv('DB_PASS')
 
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = 'django-insecure-h%cgxa9br74!un8dx&cdw9ahp-6j20e(d%zjxck3s6m!hcb7&m'
 
-DEBUG = True
+DEBUG = os.getenv('DEBUG', False)
 
-ALLOWED_HOSTS = ['0.0.0.0', '127.0.0.1', ALLOWED_HOST]
+ALLOWED_HOSTS = ['0.0.0.0', '127.0.0.1', os.getenv('ALLOWED_HOST')]
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -57,8 +67,12 @@ WSGI_APPLICATION = 'hexlet_django_blog.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': DB_NAME,
+        'USER': DB_USER,
+        'PASSWORD': DB_PASS,
+        'HOST': DB_HOST,
+        'PORT': DB_PORT
     }
 }
 
