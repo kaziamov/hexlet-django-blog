@@ -2,7 +2,7 @@ version: '3.3'
 
 services:
   app:
-    image: python:3.11.3
+    image: python:3.11.2
     build:
       context: .
     volumes:
@@ -11,7 +11,13 @@ services:
       - db
     ports:
       - 8000:8000
-    command: bash -c "cd app/ && pip install -r requirements.txt && make start-server"
+    networks:
+      - backend
+    command: bash -c "cd app
+                      && pip install -r requirements.txt
+                      && python manage.py makemigrations
+                      && python manage.py migrate
+                      && make start-server"
 
   db:
     image: postgres:12
@@ -21,5 +27,11 @@ services:
       POSTGRES_DB: ${DB_NAME}
     volumes:
       - ./pgdata:/var/lib/postgres/data
+    networks:
+      - backend
     ports:
       - 5432:5432
+
+
+networks:
+  backend:
