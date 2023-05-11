@@ -3,24 +3,33 @@
   <head>
     <title>
       {% block title %}
-        Just nothing
+        Just nothing title
       {% endblock %}
     </title>
   </head>
   <body>
     <div id="sidebar">
       {% block sidebar %}
-        <p>Just hothing</p>
+        <nav>
+          <ul>
+            <li>
+              <a href="/">Главная</a>
+            </li>
+            <li>
+              <a href="/article/">Статьи</a>
+            </li>
+          </ul>
+        </nav>
       {% endblock %}
     </div>
     <div id="content">
       {% block content %}
-        <p>Just hothing</p>
+        <p>Just nothing in content</p>
       {% endblock %}
     </div>
     <div>
       {% block footer %}
-        <p>Just hothing</p>
+        <p>Just nothing in footer</p>
       {% endblock %}
     </div>
   </body>
